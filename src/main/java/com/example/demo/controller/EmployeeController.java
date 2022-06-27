@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,8 +37,9 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Employee employee) {
+    public String save(@ModelAttribute Employee employee, RedirectAttributes ra) {
         employeeRepository.save(employee);
+        ra.addFlashAttribute("message", employee.getName() + " employee saved successfully");
         return "redirect:/list";
     }
 
@@ -50,8 +52,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam Long employeeId) {
+    public String delete(@RequestParam Long employeeId, RedirectAttributes ra) {
         employeeRepository.deleteAllById(Collections.singleton(employeeId));
+        ra.addFlashAttribute("message", "Employee ID:" + employeeId + " deleted successfully");
         return "redirect:/list";
     }
 

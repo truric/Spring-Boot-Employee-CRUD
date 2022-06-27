@@ -13,6 +13,9 @@
 <div class="container">
     <h4>New Employee form</h4>
     <hr/>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
     <form th:action="@{/save}" th:object="${employee}" method="POST">
         <input type="text" th:field="*{name}" placeholder="Enter name" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{email}" placeholder="Enter email" class="form-control col-4 mb-4"/>

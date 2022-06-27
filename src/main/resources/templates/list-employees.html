@@ -14,6 +14,9 @@
 <div class="container">
     <h4>Employees list</h4>
     <hr/>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
     <a th:href="@{/new}" class="btn btn-primary mb-2">Add new Employee</a>
     <table class="table table-bordered table-striped" id="employee-table">
         <thead>

@@ -18,6 +18,7 @@
         <input type="text" th:field="*{email}" placeholder="Enter email" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{department}" placeholder="Enter department" class="form-control col-4 mb-4"/>
         <button class="btn btn-primary" typ="submit">Save</button>
+        <input type="hidden" th:field="*{id}"/>
     </form>
     <hr/>
     <a th:href="@{/list}">Back to list</a>

@@ -11,25 +11,16 @@
 <body>
 
 <div class="container">
-    <h4>Employees list</h4>
+    <h4>New Employee form</h4>
     <hr/>
-    <a th:href="@{/new}" class="btn btn-primary mb-2">Add new Employee</a>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Department</th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr th:each="employee: ${employees}">
-            <td th:text="${employee.name}"></td>
-            <td th:text="${employee.email}"></td>
-            <td th:text="${employee.department}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <form th:action="@{/save}" th:object="${employee}" method="POST">
+        <input type="text" th:field="*{name}" placeholder="Enter name" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{email}" placeholder="Enter email" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{department}" placeholder="Enter department" class="form-control col-4 mb-4"/>
+        <button class="btn btn-primary" typ="submit">Save</button>
+    </form>
+    <hr/>
+    <a th:href="@{/list}">Back to list</a>
 </div>
 
 </body>

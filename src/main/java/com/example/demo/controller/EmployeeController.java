@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -19,7 +20,7 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping({"/show", "/", "/list"})
-    private ModelAndView show() {
+    public ModelAndView show() {
         ModelAndView mav = new ModelAndView("list-employees");
         List<Employee> list = employeeRepository.findAll();
         mav.addObject("employees", list);
@@ -27,7 +28,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/new")
-    private ModelAndView add() {
+    public ModelAndView add() {
         ModelAndView mav = new ModelAndView("add-employee-form");
         Employee employee = new Employee();
         mav.addObject("employee", employee);
@@ -35,17 +36,23 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    private String save(@ModelAttribute Employee employee) {
+    public String save(@ModelAttribute Employee employee) {
         employeeRepository.save(employee);
         return "redirect:/list";
     }
 
     @GetMapping("/update")
-    private ModelAndView update(@RequestParam Long employeeId) {
+    public ModelAndView update(@RequestParam Long employeeId) {
         ModelAndView mav = new ModelAndView("add-employee-form");
         Employee employee = employeeRepository.findById(employeeId).get();
         mav.addObject("employee", employee);
         return mav;
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam Long employeeId) {
+        employeeRepository.deleteAllById(Collections.singleton(employeeId));
+        return "redirect:/list";
     }
 
 }

@@ -30,6 +30,7 @@
             <td th:text="${employee.department}"></td>
             <td>
                 <a th:href="@{/update(employeeId=${employee.id})}" class="btn btn-info">Update</a>
+                <a th:href="@{/delete(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>
             </td>
         </tr>
         </tbody>

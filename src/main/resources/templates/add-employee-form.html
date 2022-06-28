@@ -16,16 +16,44 @@
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
     </div>
-    <form th:action="@{/save}" th:object="${employee}" method="POST">
+    <form th:action="@{/save}" th:object="${employee}" method="POST" enctype="multipart/form-data" modelAttribute="fileImage">
         <input type="text" th:field="*{name}" placeholder="Enter name" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{email}" placeholder="Enter email" class="form-control col-4 mb-4"/>
         <input type="text" th:field="*{department}" placeholder="Enter department" class="form-control col-4 mb-4"/>
-        <button class="btn btn-primary" typ="submit">Save</button>
+        <p>
+            <label>Photo:</label>
+            <input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg"/>
+        </p>
+        <p>
+            <img id="thumbnail" alt="Photo preview" style="width: 510px; height: 250px"/>
+        </p>
+        <button class="btn btn-primary m-3" type="submit">Save</button>
+        <button class="btn btn-secondary" type="button" id="buttonCancel">Cancel</button>
         <input type="hidden" th:field="*{id}"/>
     </form>
     <hr/>
     <a th:href="@{/list}">Back to list</a>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#fileImage').change(function() {
+            showImageThumbnail(this);
+        });
 
+        $('#buttonCancel').click(function() {
+            window.location = "[[@{/list}]]";
+        });
+    });
+
+    function showImageThumbnail(fileInput) {
+        file = fileInput.files[0];
+        reader = new FileReader();
+        reader.onload = function(e) {
+            $('#thumbnail').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
 </body>
 </html>

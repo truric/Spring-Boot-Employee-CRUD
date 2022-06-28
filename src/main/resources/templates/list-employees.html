@@ -24,6 +24,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Department</th>
+                <th>Photo</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -32,6 +33,9 @@
             <td th:text="${employee.name}"></td>
             <td th:text="${employee.email}"></td>
             <td th:text="${employee.department}"></td>
+            <td>
+                <img th:src="@{${employee.photoPath}}" style="width: 100px; height: 100px">
+            </td>
             <td>
                 <a th:href="@{/update(employeeId=${employee.id})}" class="btn btn-info">Update</a>
                 <a th:href="@{/delete(employeeId=${employee.id})}" class="btn btn-danger ml-2">Delete</a>

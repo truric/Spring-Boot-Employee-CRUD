@@ -19,5 +19,12 @@ public class Employee {
     private String name;
     private String email;
     private String department;
+    private String photo;
+
+    @Transient
+    public String getPhotoPath() {
+        if (photo == null || id == null ) return null;
+        return "/photos/" + id + "/" + photo;
+    }
 
 }

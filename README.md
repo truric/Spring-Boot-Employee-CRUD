@@ -20,6 +20,13 @@ The following repo contains a Spring Boot application with CRUD
     ```
 * use datatables
 
+##  Run this application:
+* create a postgres database named employeecrud
+* open browser at:
+```
+http://localhost:8080/
+```
+
 ## Routing:
 * "/" index page:
 

@@ -1,4 +1,4 @@
-# React application: The-Movie-Database Rest API
+# Spring Boot CRUD with images
 
 ## About
 The following repo contains a Spring Boot application with CRUD
